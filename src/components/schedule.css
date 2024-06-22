@@ -1,0 +1,113 @@
+.container_schedule{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+    width: 70vw;
+    /* height: 100vh; */
+    margin: auto;
+    padding: 50px;
+    border-radius: 70px;
+    background-color: black;
+    
+} 
+ 
+ .schedule_h1{
+    font-size: 3rem;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    letter-spacing: 4px;
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 20px;
+   
+}
+ .schedule_p{
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    letter-spacing: 1.5px;
+    text-align: center;
+   
+}
+
+.bloc-tabs {
+    display: flex;
+    gap: 10px;
+    /* border-radius: 50%; */
+  }
+  .tabs {
+    border-radius: 40px;
+    padding: 15px;
+    text-align: center;
+    width: 50%;
+    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+    cursor: pointer;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+    box-sizing: content-box;
+    position: relative;
+    outline: none;
+  }
+  .tabs:not(:last-child){
+    border-right: 1px solid rgba(0, 0, 0, 0.274);
+  }
+  
+  .active-tabs  {
+    background: rgb(255, 255, 255);
+    color: black;
+    border-bottom: 1px solid transparent;
+  }
+  button {
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 550;
+  }
+  .content {
+    border-radius: 20px;
+    background: rgb(247, 247, 247);
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  .content h2 {
+    padding: 0px 0 5px 0px;
+  }
+  .content hr {
+    width: 100px;
+    height: 2px;
+    background: #222;
+    margin-bottom: 5px;
+  }
+  .content p {
+    width: 100%;
+    height: 100%;
+  }
+  .active-content {
+    display: block;
+  }
+  .background-image-right {
+    top: 45%;
+    position: absolute;
+    /* bottom: -10%; */
+    width: 45%;
+    right: -20%;
+    z-index: -4;
+  }
+  .schedulecart{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+}
+.schedulecart:hover{
+    background-color: silver;
+}
+.schedulecart p{
+    color: black;
+    font-size: 1.5rem;
+}

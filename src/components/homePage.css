@@ -1,0 +1,4 @@
+.container_homePage{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,74 @@
+
+nav{
+  padding: 18px 0;
+  position: fixed;
+  width: 100%;
+  display: flex ;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+  transition:  0.32s ease-in-out;
+}
+nav.scrolled {
+  padding: 15px;
+  background-color: #121212;
+}
+ .logo img {
+    padding-top: 10px;
+    width: 90px;
+    padding-left: 10px;
+}
+.links{
+    text-decoration: none;
+    font-size: 1.5em; 
+    padding-right: 10px;
+    color: white;
+}
+.links:hover, .links.active{
+    color: rgb(136, 129, 129);
+    transition: 0.3s ease-in-out;
+
+}
+
+ #container-links{
+     display: flex; 
+     gap:40px ;
+     justify-content: center; 
+     align-items: center;
+}
+ .a {
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid #fff;
+padding: 20px;
+  font-size: 18px;
+  margin-left: 18px;
+  margin-right: 5px;
+	position: relative;
+	background-color: transparent;
+	transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+ .a span {
+  z-index: 1;
+}
+ .a::before {
+  content: "";
+  width: 0%;
+  height: 100%;
+  position: absolute;
+  background-color: #fff;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
+}
+ .a:hover {
+  color: #121212;
+}
+.a:hover::before {
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
