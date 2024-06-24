@@ -8,13 +8,13 @@
 
  import "./homePage.css";
  function HomePage(){
-    const [timerDays , settimerDays] = useState();
+  const [timerDays , settimerDays] = useState();
   const [timerHours , settimerHours] = useState();
   const [timerMinutes, settimerMinutes] = useState();
   const [timerSecondes , settimerSecondes] = useState();
   let interval;
   const startTimer=()=>{
-   const countDownDate = new Date("june 24 , 2023").getTime();
+   const countDownDate = new Date("july 24 , 2024").getTime();
    interval= setInterval(()=>{
     const now = new Date().getTime();
     const distance = countDownDate - now;
