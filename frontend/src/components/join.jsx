@@ -10,27 +10,44 @@ import "aos/dist/aos.css";
    useEffect(()=>{
     Aos.init({duration:600});
    })
-    const[data ,setData] = useState({firstname:"", lastname:"", email:"",phone:"",adresse:"",message:""});
-   //  const{firstname,lastname,email,phone,adresse,message} = data
+   
+    const[data ,setData] = useState({ lastname:"",firstname:"", email:"",phone:"",adresse:"",message:""});
+  // const [error, setError] = useState(null)
+  // const [emptyFields, setEmptyFields] = useState([])
     const handleChange =(e) =>{
       const{name ,value} = e.target;
       setData({...data,[name]:value})
     }
-    const handleSubmit = (e)=>{
-      e.preventDefault();
-      console.log(data);
-      // fetch("http://localhost:5000/join",{
-      //    method:"POST",
-      //    crossDomain :true,
-      //    headers:{
-      //       "Content-Type":"application/json",
-      //       Accept:"application/json",
-      //       "Access-Control-Allow-Origin":"*",
-      // },
-      //  body:JSON.stringify(data)
-      // })
-      alert("jwk bh");
-      setData({firstname:"", lastname:"", email:"",phone:"",adresse:"",message:""});}
+    const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log(data);
+
+  // Destructure the data object to get the required fields
+  const { lastname, firstname, email, phone, adresse, message } = data;
+
+  const part = { lastname, firstname, email, phone, adresse, message };
+
+  try {
+    const response = await fetch('/api/participants', {
+      method: 'POST',
+      body: JSON.stringify(part),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
+    }
+
+    const json = await response.json();
+    console.log(json);
+    // Handle the response as needed
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+  }
+};
+
    
     return(
     <motion.div className="container_join"
@@ -54,8 +71,9 @@ import "aos/dist/aos.css";
                   />
             </h3>
             <div className="name">
+              <input required type="text" onChange={handleChange} value={data.lastname} name="lastname" id ="" placeholder="lastname" />
             <input required type="text" onChange={handleChange} value={data.firstname} name="firstname" id ="" placeholder=" firstname" />
-            <input required type="text" onChange={handleChange} value={data.lastname} name="lastname" id ="" placeholder="lastname" />
+            
             </div>
             <input required type="email" onChange={handleChange} value={data.email}  name="email" id =""  placeholder="Enter email" />
             <input required type="phone" onChange={handleChange} value={data.phone}  name="phone" id =""  placeholder="Enter phone Number" />

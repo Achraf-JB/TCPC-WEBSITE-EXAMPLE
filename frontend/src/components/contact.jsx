@@ -17,13 +17,16 @@
    const sendEmail = (e) => {
      e.preventDefault();
  
-     emailjs.sendForm('service_ljp2yit', 'template_gq7yxtd', form.current, 'HQGpWryDGqXj4MkLQ')
-       .then((result) => {
-           console.log(result.text);
-           alert("message send");
-       }, (error) => {
-           console.log(error.text);
-       });
+     emailjs.sendForm('service_7vg1nqo', 'template_gq7yxtd', form.current, 'HQGpWryDGqXj4MkLQ')
+       .then(
+           () => {
+               alert('jwk bh');
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
    };
     return(
      <motion.div className="container_contact"
