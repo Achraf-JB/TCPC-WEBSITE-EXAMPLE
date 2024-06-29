@@ -2,7 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const participantRoutes = require('./routes/participant');
+const ParticipantModel = require('./models/ParticipantModel');
+
 
 // Express app
 const app = express();
@@ -11,20 +12,11 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS for all routes
-app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend's URL
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // If you need to send cookies or authentication headers
-  optionsSuccessStatus: 204
-}));
+app.use(cors());
 
-app.use((req, res, next) => {
-  console.log(req.path, req.method);
-  next();
-});
 
-// Routes
-app.use('/api/participants', participantRoutes); // Corrected route
+
+
 
 // Connect to database
 mongoose.connect(process.env.MONG_URI)
@@ -38,3 +30,9 @@ mongoose.connect(process.env.MONG_URI)
   .catch((err) => {
     console.log(err);
   });
+
+app.post('/register', (req, res) => {
+  ParticipantModel.create(req.body)
+    .then(part => res.json(part))
+    .catch(err => res.json(err));
+})

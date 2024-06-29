@@ -5,12 +5,14 @@ import{motion} from "framer-motion";
 import img_contact from "../assets/contact-img.svg"
 import Aos from "aos";
 import "aos/dist/aos.css";
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
  function Join(){
 
    useEffect(()=>{
     Aos.init({duration:600});
    })
-   
+   const navigate = useNavigate();
     const[data ,setData] = useState({ lastname:"",firstname:"", email:"",phone:"",adresse:"",message:""});
   // const [error, setError] = useState(null)
   // const [emptyFields, setEmptyFields] = useState([])
@@ -18,35 +20,23 @@ import "aos/dist/aos.css";
       const{name ,value} = e.target;
       setData({...data,[name]:value})
     }
-    const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log(data);
+   const handleSubmit =  (e) => {
+     e.preventDefault();
+     console.log(data);
+     const { lastname, firstname, email, phone, adresse, message } = data;
 
-  // Destructure the data object to get the required fields
-  const { lastname, firstname, email, phone, adresse, message } = data;
+     const part = { lastname, firstname, email, phone, adresse, message };
+     axios.post('http://localhost:4000/register', part)
+       .then(result => {
+         console.log(result)
+         navigate('/');
+       })
+     
+       .catch(error => console.error(error));
+     // Destructure the data object to get the required fields
+     
 
-  const part = { lastname, firstname, email, phone, adresse, message };
-
-  try {
-    const response = await fetch('/api/participants', {
-      method: 'POST',
-      body: JSON.stringify(part),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok ' + response.statusText);
-    }
-
-    const json = await response.json();
-    console.log(json);
-    // Handle the response as needed
-  } catch (error) {
-    console.error('There was a problem with the fetch operation:', error);
-  }
-};
+   }
 
    
     return(
