@@ -27,5 +27,5 @@ const ParticipantSchema = new Schema({
     type: String
   }
 }, { timestamps: true })
-
+//exporting  the participant model
 module.exports = mongoose.model('Participant', ParticipantSchema)
